@@ -28,4 +28,9 @@ public class UserController {
         return userService.getById(id);
     }
 
+    @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
+    public UserResponse saveUser(@RequestBody User user) {
+        return  userService.save(user);
+    }
 }

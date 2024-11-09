@@ -8,5 +8,8 @@ import java.util.List;
 public interface UserService {
 
     List<UserResponse> getAll();
+
     UserResponse getById(long id);
+
+    UserResponse save(User user);
 }

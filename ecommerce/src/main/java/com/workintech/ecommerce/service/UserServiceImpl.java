@@ -34,4 +34,10 @@ public class UserServiceImpl implements UserService{
 
         return DtoConverter.convertUserToUserResponse(user);
     }
+
+    @Override
+    public UserResponse save(User user) {
+        User savedUser = userRepository.save(user);
+        return DtoConverter.convertUserToUserResponse(user);
+    }
 }

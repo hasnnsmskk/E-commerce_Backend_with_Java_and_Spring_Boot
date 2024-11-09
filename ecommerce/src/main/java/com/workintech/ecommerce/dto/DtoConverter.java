@@ -1,5 +1,6 @@
 package com.workintech.ecommerce.dto;
 
+import com.workintech.ecommerce.entity.Product;
 import com.workintech.ecommerce.entity.User;
 
 import java.util.ArrayList;
@@ -19,5 +20,15 @@ public class DtoConverter {
         });
         return responseList;
     }
+
+    public static UserProductResponse convertProductToUserProductResponse(Product product) {
+        List<Long> userIds = new ArrayList<>();
+        for (User user : product.getUsers()) {
+            userIds.add(user.getId());
+        }
+
+        return new UserProductResponse(userIds, product.getId(), product.getTitle(), product.getDescription(), product.getPrice());
+    }
+
 
 }
