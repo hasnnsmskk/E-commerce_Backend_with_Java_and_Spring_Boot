@@ -16,23 +16,15 @@ import java.util.Optional;
 @AllArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
-    private final UserRepository userRepository;
+    private final UserService userService;
     private final ProductRepository productRepository; // Ürün kaydını yapmak için
 
     @Override
     public UserProductResponse save(long userId, Product product) {
-        Optional<User> foundUser = userRepository.findById(userId);
-        if (foundUser.isPresent()) {
-            User user = foundUser.get();
-
-            // Kullanıcının ürün listesine ekleme
-            user.addProduct(product);
-
-            Product savedProduct = productRepository.save(product); // Ürünü kaydet ve geri döndür
-            userRepository.save(user);
-            return DtoConverter.convertProductToUserProductResponse(savedProduct);
-        } else {
-            throw new RuntimeException("User with given id not exist: " + userId);
-        }
+        User foundUser = userService.findById(userId);
+        foundUser.addProduct(product);
+        product.setUsers(foundUser);
+        Product savedPost = productRepository.save(product);
+        return  DtoConverter.convertProductToUserProductResponse(savedPost);
     }
 }

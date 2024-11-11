@@ -1,5 +1,6 @@
 package com.workintech.ecommerce.service;
 
+import com.workintech.ecommerce.dto.UserProductResponse;
 import com.workintech.ecommerce.dto.UserResponse;
 import com.workintech.ecommerce.entity.User;
 
@@ -11,5 +12,8 @@ public interface UserService {
 
     UserResponse getById(long id);
 
+    User findById(long id);
+
     UserResponse save(User user);
+
 }

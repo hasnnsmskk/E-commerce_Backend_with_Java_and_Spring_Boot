@@ -1,5 +1,6 @@
 package com.workintech.ecommerce.controller;
 
+import com.workintech.ecommerce.dto.UserProductResponse;
 import com.workintech.ecommerce.dto.UserResponse;
 import com.workintech.ecommerce.entity.User;
 import com.workintech.ecommerce.service.UserService;
@@ -33,4 +34,7 @@ public class UserController {
     public UserResponse saveUser(@RequestBody User user) {
         return  userService.save(user);
     }
+
+
+
 }
